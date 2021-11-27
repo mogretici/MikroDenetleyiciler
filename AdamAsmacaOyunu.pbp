@@ -2,13 +2,13 @@ include "terminaltanim.pbp"
 include "lcdtanim.pbp" 
 
 
-LCdout $fe ,$40 ,14 ,14 ,4 ,4 ,4 ,0 ,0 'kafa gövde
+LCdout $fe ,$40 ,14 ,14 ,4 ,4 ,4 ,0 ,0 'kafa gÃ¶vde
 LCdout $fe ,$48 ,14 ,14 ,4 ,28 ,4 ,0 ,0 'sol kol
-LCdout $fe ,$50 ,14 ,14 ,4 ,31 ,4 ,0 ,0 'tüm kollar
+LCdout $fe ,$50 ,14 ,14 ,4 ,31 ,4 ,0 ,0 'tÃ¼m kollar
 LCdout $fe ,$58 ,14 ,14 ,4 ,31 ,4 ,8 ,16 'sol bacak
-LCdout $fe ,$60 ,14 ,14 ,4 ,31 ,4 ,10 ,17, 0 'tamamı
-LCdout $fe ,$68 ,0 ,0 ,4 ,31 ,4 ,10 ,17, 0'kafasız
-LCdout $fe ,$70 ,0 ,0 ,0 ,0 ,0 ,14 ,14, 0'düşmüş kafa
+LCdout $fe ,$60 ,14 ,14 ,4 ,31 ,4 ,10 ,17, 0 'tamamÄ±
+LCdout $fe ,$68 ,0 ,0 ,4 ,31 ,4 ,10 ,17, 0'kafasÄ±z
+LCdout $fe ,$70 ,0 ,0 ,0 ,0 ,0 ,14 ,14, 0'dÃ¼ÅŸmÃ¼ÅŸ kafa
 LCdout $fe ,$78 ,0 ,4 ,8 ,31 ,8 ,4 ,0, 0,0'ok
 
 
@@ -32,14 +32,14 @@ harf[2]="*"
 harf[3]="*"
 harf[4]="*" 
 
-kelime[0]="*"   'lcd deki sonuçlar
+kelime[0]="*"   'lcd deki sonuÃ§lar
 kelime[1]="*"
 kelime[2]="*"
 kelime[3]="*"
 kelime[4]="*"
 
 for k=0 to 4
-    hserin [harf[k]]   'birinci oyuncudan girdi alınıyor
+    hserin [harf[k]]   'birinci oyuncudan girdi alÄ±nÄ±yor
     hserout ["*"]
 next k 
 
@@ -50,7 +50,7 @@ hserout ["Kelime Girildi Ikinci Oyuncu Tahmine Baslasin.",13,10]
 
 ekransonuc:
 
-if kelime[0]=harf[0] and kelime[1]=harf[1] and kelime[2]=harf[2] and kelime[3]=harf[3] and kelime[4]=harf[4]  then 'oyuncu girdileri ve lcd sonuçları eşitse
+if kelime[0]=harf[0] and kelime[1]=harf[1] and kelime[2]=harf[2] and kelime[3]=harf[3] and kelime[4]=harf[4]  then 'oyuncu girdileri ve lcd sonuÃ§larÄ± eÅŸitse
 lcdout $fe,1
 lcdout "*TEBRIKLER KAZANDIN*"
 lcdout $fe,$c0,"*DOGRU CEVAP:",harf[0],harf[1],harf[2],harf[3],harf[4]," *"
@@ -71,25 +71,25 @@ lcdout $fe,$c3,kelime[3]
 lcdout $fe,$c4,kelime[4]
 lcdout $fe,$c5," Kalan tahmin:", #kalan
 
-hserin [tahmin]  'ikinci oyuncudan tahmin alınıyor
+hserin [tahmin]  'ikinci oyuncudan tahmin alÄ±nÄ±yor
 hserout ["Tahmin Edilen Harf: ",tahmin,13,10]
 
 for k=0 to 4
 
-if tahmin=harf[k] then     'ikinci oyuncu tahmini ve birinci oyuncu girdisi eşleşiyorsa lcd ye yazdırılır.
+if tahmin=harf[k] then     'ikinci oyuncu tahmini ve birinci oyuncu girdisi eÅŸleÅŸiyorsa lcd ye yazdÄ±rÄ±lÄ±r.
       kelime[k]=tahmin
       add=1  
 endif
 next k
 
-if add=0 then       'girdi ve tahmin eşleşmediyse kalan hak azaltılır.
+if add=0 then       'girdi ve tahmin eÅŸleÅŸmediyse kalan hak azaltÄ±lÄ±r.
     kalan=kalan-1 
     j=j+1
 
     
 endif
 if kalan<5 then
-    LCDOUT $fe,1,j           'kalan hak azaldıkça asılan adam tamamlanır.
+    LCDOUT $fe,1,j           'kalan hak azaldÄ±kÃ§a asÄ±lan adam tamamlanÄ±r.
     pause 100
 endif
 
@@ -98,7 +98,7 @@ endif
     
 if kalan=0 then
     
-    for i=148 to 129 step -1     'kalan sıfır olunca ok kaymaya başlıyor
+    for i=148 to 129 step -1     'kalan sÄ±fÄ±r olunca ok kaymaya baÅŸlÄ±yor
         lcdout $fe,1
         lcdout $fe,128,4
         lcdout $fe,i,7 
