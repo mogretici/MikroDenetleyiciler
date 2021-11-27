@@ -1,0 +1,9 @@
+DEFINE LCD_DREG PORTD       'lcd data portunun baðlandýðý pic portu
+DEFINE LCD_DBIT 0           '4-bit bus için data bit(0 yada 4) baþlangýç
+DEFINE LCD_RSREG PORTE      'lcd rs in baðlandýðý pic portu
+DEFINE LCD_RSBIT 0          'rs in baðlandýðý pic portE nin bit numarasý
+DEFINE LCD_EREG PORTE       'LCD E nin baðlandýðý pic portu
+DEFINE LCD_EBIT 2           'LCD E nin baðlandýðý pic portEnin bit numarasý
+DEFINE LCD_BITS 8
+ADCON1=7
+PAUSE 100

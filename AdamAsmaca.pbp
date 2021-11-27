@@ -1,0 +1,129 @@
+include "terminaltanim.pbp"
+include "lcdtanim.pbp" 
+
+
+LCdout $fe ,$40 ,14 ,14 ,4 ,4 ,4 ,0 ,0 'kafa gövde
+LCdout $fe ,$48 ,14 ,14 ,4 ,28 ,4 ,0 ,0 'sol kol
+LCdout $fe ,$50 ,14 ,14 ,4 ,31 ,4 ,0 ,0 'tüm kollar
+LCdout $fe ,$58 ,14 ,14 ,4 ,31 ,4 ,8 ,16 'sol bacak
+LCdout $fe ,$60 ,14 ,14 ,4 ,31 ,4 ,10 ,17, 0 'tamamý
+LCdout $fe ,$68 ,0 ,0 ,4 ,31 ,4 ,10 ,17, 0'kafasýz
+LCdout $fe ,$70 ,0 ,0 ,0 ,0 ,0 ,14 ,14, 0'düþmüþ kafa
+LCdout $fe ,$78 ,0 ,4 ,8 ,31 ,8 ,4 ,0, 0,0'ok
+
+
+harf var byte [5]
+kelime var byte [5]
+add var byte
+j var byte
+i var byte
+k var byte
+tahmin var byte
+kalan var byte
+kalan=5
+add=0
+j=0 
+
+
+hserout ["Birinci oyuncu 5 karakterli kelimesini girsin.",13,10]
+harf[0]="*" ' birinci oyuncunun girdileri
+harf[1]="*"
+harf[2]="*"
+harf[3]="*"
+harf[4]="*" 
+
+kelime[0]="*"   'lcd deki sonuçlar
+kelime[1]="*"
+kelime[2]="*"
+kelime[3]="*"
+kelime[4]="*"
+
+for k=0 to 4
+    hserin [harf[k]]   'birinci oyuncudan girdi alýnýyor
+    hserout ["*"]
+next k 
+
+
+   
+hserout [" ",13,10]
+hserout ["Kelime Girildi Ikinci Oyuncu Tahmine Baslasin.",13,10]
+
+ekransonuc:
+
+if kelime[0]=harf[0] and kelime[1]=harf[1] and kelime[2]=harf[2] and kelime[3]=harf[3] and kelime[4]=harf[4]  then 'oyuncu girdileri ve lcd sonuçlarý eþitse
+lcdout $fe,1
+lcdout "*TEBRIKLER KAZANDIN*"
+lcdout $fe,$c0,"*DOGRU CEVAP:",harf[0],harf[1],harf[2],harf[3],harf[4]," *"
+hserout [" ",13,10]
+hserout ["***** TEBRIKLER KAZANDIN ***** ",13,10]
+hserout ["***** Dogru Cevap: ",harf[0],harf[1],harf[2],harf[3],harf[4]," *****",13,10]
+hserout ["****************************** ",13,10]
+pause 10000
+end
+endif
+
+
+add=0
+lcdout $fe,$c0,kelime[0]
+lcdout $fe,$c1,kelime[1]
+lcdout $fe,$c2,kelime[2]
+lcdout $fe,$c3,kelime[3]
+lcdout $fe,$c4,kelime[4]
+lcdout $fe,$c5," Kalan tahmin:", #kalan
+
+hserin [tahmin]  'ikinci oyuncudan tahmin alýnýyor
+hserout ["Tahmin Edilen Harf: ",tahmin,13,10]
+
+for k=0 to 4
+
+if tahmin=harf[k] then     'ikinci oyuncu tahmini ve birinci oyuncu girdisi eþleþiyorsa lcd ye yazdýrýlýr.
+      kelime[k]=tahmin
+      add=1  
+endif
+next k
+
+if add=0 then       'girdi ve tahmin eþleþmediyse kalan hak azaltýlýr.
+    kalan=kalan-1 
+    j=j+1
+
+    
+endif
+if kalan<5 then
+    LCDOUT $fe,1,j           'kalan hak azaldýkça asýlan adam tamamlanýr.
+    pause 100
+endif
+
+
+
+    
+if kalan=0 then
+    
+    for i=148 to 129 step -1     'kalan sýfýr olunca ok kaymaya baþlýyor
+        lcdout $fe,1
+        lcdout $fe,128,4
+        lcdout $fe,i,7 
+        pause 100
+        
+
+    next i                     'OYUN SONU
+    lcdout $fe,1
+    LCDOUT 5,6
+    lcdout $fe,$c0,"KAYBETTINIZ :("
+    end
+    
+endif
+goto ekransonuc
+
+
+
+
+
+
+
+
+
+
+
+
+
+              
