@@ -1,1 +1,1 @@
-# PICBasic
+- PICBasic Pro ile Basit Uygulamalar (PIC16F877)
